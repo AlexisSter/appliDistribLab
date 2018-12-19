@@ -38,9 +38,6 @@ public class JobController {
             System.out.println("Error job not existing");
             return null;
         }
-
-
-
     }
 
 
@@ -48,7 +45,6 @@ public class JobController {
 
         static String id;
         static String newTitle;
-
         public void setId(String id) {
             this.id = id;
         }
