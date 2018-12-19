@@ -27,23 +27,27 @@ public class JobController {
 
     @PostMapping(value = "/update", consumes={"application/json"})
     public JobsEntity  updateJob (@RequestBody JobUpdateQuery updateQuery) {
-        Optional<JobsEntity> opt = jobRepository.findById(JobUpdateQuery.getId());
+        Optional<JobsEntity> opt = Optional.ofNullable(jobRepository.findByJobId(JobUpdateQuery.getId()));
         if(opt.isPresent()){
-            opt.get();
-            jobRepository.save(opt);
+            JobsEntity a= opt.get();
+            a.setJobTitle(JobUpdateQuery.getNewTitle());
+            jobRepository.save(a);
+            return a;
         }
         else{
             System.out.println("Error job not existing");
             return null;
         }
 
+
+
     }
 
 
     public static class JobUpdateQuery {
 
-        String id;
-        String newTitle;
+        static String id;
+        static String newTitle;
 
         public void setId(String id) {
             this.id = id;
@@ -53,11 +57,11 @@ public class JobController {
             this.newTitle = newTitle;
         }
 
-        public String getId() {
+        public static  String  getId() {
             return id;
         }
 
-        public String getNewTitle() {
+        public static String getNewTitle() {
             return newTitle;
         }
     }

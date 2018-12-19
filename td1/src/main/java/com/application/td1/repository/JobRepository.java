@@ -13,4 +13,5 @@ import org.springframework.stereotype.Component;
     public interface JobRepository extends JpaRepository<JobsEntity, Long>{
         List<JobsEntity> findAll();
         JobsEntity findByJobTitle(String name);
+    JobsEntity findByJobId(String id);
     }
