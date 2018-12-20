@@ -12,5 +12,6 @@ import org.springframework.stereotype.Component;
     public interface CountryRepository extends JpaRepository<CountriesEntity, Long>{
         List<CountriesEntity> findAll();
         CountriesEntity findByCountryName(String name);
+        CountriesEntity findByCountryId(String name);
     }
 

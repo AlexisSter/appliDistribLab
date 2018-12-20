@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-md-5">
+    <div class="row mb-md-3">
+        <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+            <h1>Modifier le nom d'un pays</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+<form action="#" th:action="@{/country/update}" th:object="${form}" method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Id du pays</label>
+        <input type="text" th:field="*{id}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Id">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Nom du pays</label>
+        <input type="text" th:field="*{countryName}" class="form-control" id="exampleInputPassword1" placeholder="Nom">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+
+</html>

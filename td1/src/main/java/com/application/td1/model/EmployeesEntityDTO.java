@@ -1,5 +1,8 @@
 package com.application.td1.model;
 
+import java.util.List;
+import java.util.stream.Collector;
+
 public class EmployeesEntityDTO {
     private String firstName;
     private String lastName;
@@ -47,4 +50,6 @@ public class EmployeesEntityDTO {
                 ", departmentName=" + departmentId.getDepartmentName() +
                 '}';
     }
+
+
 }

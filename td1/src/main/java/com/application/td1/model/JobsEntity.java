@@ -1,6 +1,7 @@
 package com.application.td1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,10 +10,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "jobs", schema = "humanresources", catalog = "")
 public class JobsEntity {
+    @ApiModelProperty(notes = "The database generated product ID")
     private String jobId;
+    @ApiModelProperty(notes = "The database generated product ID")
     private String jobTitle;
+    @ApiModelProperty(notes = "The database generated product ID")
     private Integer minSalary;
+    @ApiModelProperty(notes = "The database generated product ID")
     private Integer maxSalary;
+    @ApiModelProperty(notes = "The database generated product ID")
     @JsonIgnore
     private List<EmployeesEntity> employeesList;
     @JsonIgnore

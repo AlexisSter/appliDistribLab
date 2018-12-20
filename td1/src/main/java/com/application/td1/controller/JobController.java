@@ -2,6 +2,7 @@ package com.application.td1.controller;
 
 import com.application.td1.model.JobsEntity;
 import com.application.td1.repository.JobRepository;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,8 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@Api(value="/customer",description="Job Controller",produces ="application/json")
 @RequestMapping(path="/job")
 public class JobController {
+
+
 
     @Autowired
     private JobRepository jobRepository;
@@ -23,6 +27,11 @@ public class JobController {
     @GetMapping(value = "/{jobName}")
     public JobsEntity findOne (@PathVariable final String jobName) {
         return jobRepository.findByJobTitle(jobName);
+    }
+
+    @GetMapping(value = "/salary/{val}")
+    public List<JobsEntity> findSalary (@PathVariable final Integer val) {
+        return jobRepository.findByMinSalaryIsAfterOrderByMinSalaryDesc(val);
     }
 
     @PostMapping(value = "/update", consumes={"application/json"})
@@ -43,8 +52,8 @@ public class JobController {
 
     public static class JobUpdateQuery {
 
-        static String id;
-        static String newTitle;
+        private static String id;
+        private static String newTitle;
         public void setId(String id) {
             this.id = id;
         }
