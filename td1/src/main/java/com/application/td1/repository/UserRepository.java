@@ -5,18 +5,16 @@ import java.util.Optional;
 
 import com.application.td1.model.EmployeesEntity;
 import com.application.td1.model.JobsEntity;
+import com.application.td1.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Component;
 
 
-@RepositoryRestResource(collectionResourceRel = "employee", path = "/employee")
+@RepositoryRestResource(collectionResourceRel = "users", path = "/users")
 @Component
-public interface EmployeeRepository extends JpaRepository<EmployeesEntity, Long>{
-    List<EmployeesEntity> findAll();
-
-    List<EmployeesEntity> findByFirstName(String val);
-    EmployeesEntity findByEmployeeId(Integer val);
+    public interface UserRepository extends JpaRepository<Users, Long>{
 
 
+    Optional<Users> findByLastName(String username);
 }

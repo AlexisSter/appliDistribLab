@@ -25,6 +25,21 @@ public class EmployeesEntity {
     @JsonIgnore
     private List<JobHistoryEntity> jobhistoryList;
 
+    public EmployeesEntity(EmployeesEntity employeesEntity) {
+        this.commissionPct=getCommissionPct();
+        this.departmentId=getDepartmentId();
+        this.email=getEmail();
+        this.employeeId=getEmployeeId();
+        this.firstName=getFirstName();
+        this.hireDate=getHireDate();
+        this.jobhistoryList=getJobhistoryList();
+        this.jobId=getJobId();
+        this.lastName=getLastName();
+        this.managerId=getManagerId();
+        this.phoneNumber=getPhoneNumber();
+        this.salary=getSalary();
+    }
+
     @Id
     @Column(name = "EMPLOYEE_ID")
     public Integer getEmployeeId() {

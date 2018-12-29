@@ -5,6 +5,7 @@ import com.application.td1.model.JobsEntity;
 import com.application.td1.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/country")
+@RequestMapping("/country")
 public class CountriesController {
         @Autowired
         private CountryRepository countryRepository;
@@ -30,7 +31,8 @@ public class CountriesController {
         return countryRepository.findByCountryName(countryName);
     }
 
-    @RequestMapping(value = "/charge",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @RequestMapping(value = "/secured/charge",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String update(Model model) {
         model.addAttribute("form", new FormCountry());
         return "update";
@@ -49,7 +51,9 @@ public class CountriesController {
         return "hello";
 
     }
-    @PostMapping("/update")
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PostMapping("/secured/update")
     public String greetingSubmit(@ModelAttribute("form") FormCountry form, Model model) {
             String id = form.getId();
         Optional<CountriesEntity> opt = Optional.ofNullable(countryRepository.findByCountryId(id));
