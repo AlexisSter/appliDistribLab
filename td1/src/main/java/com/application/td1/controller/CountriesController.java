@@ -35,7 +35,7 @@ public class CountriesController {
     @RequestMapping(value = "/secured/charge",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String update(Model model) {
         model.addAttribute("form", new FormCountry());
-        return "update";
+        return "index";
     }
 
 

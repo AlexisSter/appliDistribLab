@@ -4,6 +4,9 @@ package com.application.td1;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
@@ -17,7 +20,8 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @Configuration
-public class ThymeleafWebMvcConfig extends WebMvcConfigurerAdapter {
+@EnableWebMvc
+public class ThymeleafWebMvcConfig implements WebMvcConfigurer {
 
 
     public ViewResolver viewResolver(){
@@ -44,6 +48,14 @@ public class ThymeleafWebMvcConfig extends WebMvcConfigurerAdapter {
         templateResolver.setPrefix("classpath:/templates/");
 
         return templateResolver;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
+
+
     }
 
 }
