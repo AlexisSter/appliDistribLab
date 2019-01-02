@@ -20,9 +20,20 @@ public class pageController {
 
 
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    //@PreAuthorize("hasAnyRole('USER')")
+    @RequestMapping(value = "/home",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String home(Model model) {
+
+        return "home";
+    }
     @RequestMapping(value = "/",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public String update(Model model) {
+    public String home1(Model model) {
+
+        return "home";
+    }
+
+    @RequestMapping(value = "/table",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String table(Model model) {
 
         return "index";
     }

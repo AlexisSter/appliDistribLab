@@ -2,6 +2,7 @@ package com.application.td1.controller;
 import com.application.td1.model.CountriesEntity;
 import com.application.td1.model.EmployeesEntity;
 import com.application.td1.model.JobsEntity;
+import com.application.td1.model.RegionsEntity;
 import com.application.td1.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/country")
+@RequestMapping(value="/country")
 public class CountriesController {
         @Autowired
         private CountryRepository countryRepository;
@@ -31,11 +32,11 @@ public class CountriesController {
         return countryRepository.findByCountryName(countryName);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    @RequestMapping(value = "/secured/charge",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    //@PreAuthorize("hasAnyRole('ADMIN')")
+    @RequestMapping(value = "/charge",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String update(Model model) {
         model.addAttribute("form", new FormCountry());
-        return "index";
+        return "update";
     }
 
 
@@ -52,10 +53,10 @@ public class CountriesController {
 
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    @PostMapping("/secured/update")
+
+    @PostMapping("/update")
     public String greetingSubmit(@ModelAttribute("form") FormCountry form, Model model) {
-            String id = form.getId();
+            String id = form.getCountryId();
         Optional<CountriesEntity> opt = Optional.ofNullable(countryRepository.findByCountryId(id));
         if(opt.isPresent()){
             CountriesEntity a= opt.get();
@@ -74,12 +75,14 @@ public class CountriesController {
 
     public static class FormCountry {
 
-        private  static String id;
+        private  static String countryId;
 
         private  static String countryName;
 
-        public  void setId(String id) {
-            FormCountry.id = id;
+        private static String regionName;
+
+        public  void setCountryId(String id) {
+            FormCountry.countryId = id;
         }
 
         public  void setCountryName(String countryName) {
@@ -88,18 +91,20 @@ public class CountriesController {
 
 
 
-        public  String getId() {
-            return id;
+        public  String getCountryId() {
+            return countryId;
         }
 
         public  String getCountryName() {
             return countryName;
         }
 
+        public static String getRegionName() {
+            return regionName;
+        }
 
-
-
-
-
+        public static void setRegionName(String regionName) {
+            FormCountry.regionName = regionName;
+        }
     }
 }

@@ -85,7 +85,7 @@ public class LocationsEntity {
         return Objects.hash(locationId, streetAddress, postalCode, city, stateProvince);
     }
 
-    @OneToMany(mappedBy = "locationId")
+    @OneToMany(mappedBy = "locationId", cascade = CascadeType.REMOVE)
     public List<DepartmentsEntity> getDepartmentsList() {
         return departmentsList;
     }

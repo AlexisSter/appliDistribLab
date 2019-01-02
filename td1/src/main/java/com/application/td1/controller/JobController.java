@@ -4,12 +4,13 @@ import com.application.td1.model.JobsEntity;
 import com.application.td1.repository.JobRepository;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @Api(value="/customer",description="Job Controller",produces ="application/json")
 @RequestMapping(path="/job")
 public class JobController {

@@ -73,7 +73,7 @@ public class DepartmentsEntity {
         this.locationId = locationId;
     }
 
-    @OneToMany(mappedBy = "departmentId")
+    @OneToMany(mappedBy = "departmentId", cascade = CascadeType.REMOVE)
     public List<EmployeesEntity> getEmployeesList() {
         return employeesList;
     }
@@ -82,7 +82,7 @@ public class DepartmentsEntity {
         this.employeesList = employeesList;
     }
 
-    @OneToMany(mappedBy = "departmentId")
+    @OneToMany(mappedBy = "departmentId", cascade = CascadeType.REMOVE)
     public List<JobHistoryEntity> getJobhistoryList() {
         return jobhistoryList;
     }

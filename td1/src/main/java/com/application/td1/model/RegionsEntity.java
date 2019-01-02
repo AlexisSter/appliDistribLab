@@ -48,7 +48,7 @@ public class RegionsEntity {
         return Objects.hash(regionId, regionName);
     }
 
-    @OneToMany(mappedBy = "regionId")
+    @OneToMany(mappedBy = "regionId", cascade = CascadeType.REMOVE)
     public List<CountriesEntity> getCountriesList() {
         return countriesList;
     }

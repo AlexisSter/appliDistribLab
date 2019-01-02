@@ -12,6 +12,7 @@ public class CountriesEntity {
     private String countryId;
     private String countryName;
     private RegionsEntity regionId;
+    private int regId;
     @JsonIgnore
     private List<LocationsEntity> locationsList;
 

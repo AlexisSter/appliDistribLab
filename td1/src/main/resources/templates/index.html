@@ -24,22 +24,22 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="#">AppliDistrib STER-DELORME</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" th:href="@{http://localhost:8080/home}">Home</a>
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#">Graph</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
+              <a class="nav-link" th:href="@{http://localhost:8080/table}">Tables</a>
             </li>
             <li class="nav-item">
               <form th:action="@{/logout}" method="post">
@@ -54,70 +54,114 @@
     <!-- Page Content -->
     <div class="container">
 
-      <h1 class="my-4 text-center text-lg-left">Thumbnail Gallery</h1>
+      <h1 class="my-4 text-center text-lg-left">DB tables</h1>
 
       <div class="row text-center text-lg-left">
 
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              Countries
+            </div>
+            <div class="card-body">
+              <form th:action="@{/country/countries}">
+              <button href="#" class="btn btn-primary">View</button>
+              </form>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              Departments
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              Employees
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              Jobs
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              Job_history
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              Locations
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              Regions
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              Role
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              User
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
+          <div class="card mb-3">
+            <div class="card-header">
+              User_role
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
+
+
       </div>
 
     </div>

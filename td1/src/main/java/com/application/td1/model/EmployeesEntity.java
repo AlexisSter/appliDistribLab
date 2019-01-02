@@ -25,6 +25,8 @@ public class EmployeesEntity {
     @JsonIgnore
     private List<JobHistoryEntity> jobhistoryList;
 
+    public EmployeesEntity(){}
+
     public EmployeesEntity(EmployeesEntity employeesEntity) {
         this.commissionPct=getCommissionPct();
         this.departmentId=getDepartmentId();
@@ -171,7 +173,7 @@ public class EmployeesEntity {
         this.jobId = jobId;
     }
 
-    @OneToMany(mappedBy = "employeeId")
+    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.REMOVE)
     public List<JobHistoryEntity> getJobhistoryList() {
         return jobhistoryList;
     }

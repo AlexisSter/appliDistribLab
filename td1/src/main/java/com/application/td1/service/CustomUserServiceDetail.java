@@ -45,4 +45,14 @@ public class CustomUserServiceDetail implements UserDetailsService {
         user.setRoles(roles);
         userRepository.save(user);
     }
+
+    public void createUser(Users user) {
+        BCryptPasswordEncoder encoder = new  BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
+        Role userRole = new Role("USER");
+        Set<Role> roles = new HashSet<>();
+        roles.add(userRole);
+        user.setRoles(roles);
+        userRepository.save(user);
+    }
 }

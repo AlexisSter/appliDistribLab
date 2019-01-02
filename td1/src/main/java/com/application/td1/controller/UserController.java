@@ -52,7 +52,7 @@ public class UserController {
     public String registerUser(@Valid Users user, BindingResult bindingResult, Model model) {
 
 
-        userService.createAdmin(user);
+        userService.createUser(user);
 
         return "hello";
 
