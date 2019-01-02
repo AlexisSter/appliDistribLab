@@ -45,6 +45,7 @@ public class CountriesProjectController {
         model.addAttribute("smokeTests",a);
         model.addAttribute("country", new CountriesController.FormCountry());
         model.addAttribute("countryAdd", new CountriesController.FormCountry());
+        model.addAttribute("countryEdit", new CountriesController.FormCountry());
         model.addAttribute("region",c);
         return "countries";
 
@@ -111,6 +112,46 @@ public class CountriesProjectController {
 
 
             countryRepository.save(a);
+
+
+        }
+
+
+        findA(model);
+        return "countries";
+    }
+    @PostMapping(value = "/edit")
+    public String edit (@ModelAttribute("countryEdit") CountriesController.FormCountry country, Model model) {
+        String id = country.getCountryId();
+        Optional<CountriesEntity> opt = Optional.ofNullable(countryRepository.findByCountryId(id));
+        if(opt.isPresent()){
+            CountriesEntity b= opt.get();
+
+            b.setCountryId(country.getCountryId());
+            b.setCountryName(country.getCountryName());
+            String name = country.getRegionName();
+
+            System.out.println(name);
+            Optional<RegionsEntity> t = Optional.ofNullable(regionRepository.findByRegionName(name));
+            if(t.isPresent()) {
+                //System.out.println(t.getRegionId());
+                //System.out.println(t.getRegionName());
+                RegionsEntity i = t.get();
+                b.setRegionId(i);
+            }
+            else{
+                System.out.println("error");
+            }
+            countryRepository.save(b);
+
+        }
+        else{
+            System.out.println("Error country already exist");
+
+
+
+
+
 
 
         }

@@ -82,9 +82,12 @@
                         <td data-th-text="${user.countryId}">test</td>
                         <td data-th-text="${user.countryName}">...</td>
                         <td data-th-text="${user.regionId.getRegionName()}">...</td>
-                        <td><button class="btn btn-outline-warning"><i class="far fa-edit"></i></button></td>
-                        <td><button th:attr="data-target='#'+${user.countryId}" data-toggle="modal" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></td>
-                        <div class="modal fade" th:id="${user.countryId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <td><button th:attr="data-target='#edit'+${user.countryId}" data-toggle="modal" class="btn btn-outline-warning"><i class="far fa-edit"></i></button></td>
+                        <td><button th:attr="data-target='#delete'+${user.countryId}" data-toggle="modal" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></td>
+
+
+
+                        <div class="modal fade" th:id="'delete'+${user.countryId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -111,6 +114,59 @@
                                             <button  type="submit" class="btn btn-primary">Delete</button>
                                         </form>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" th:id="'edit'+${user.countryId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5  class="modal-title" id="exampleModalL">Edit country</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form th:action="@{/country/edit}" th:object="${countryEdit}" action="#" method="post">
+                                            <div class="form-group">
+                                                <label>Country ID</label>
+                                                <input type="text"
+                                                       name="countryId"
+                                                       th:value="${user.countryId}"
+                                                       class="form-control" aria-describedby="emailHelp" placeholder="Enter country ID">
+                                                <small id="emailHe" class="form-text text-muted">The ID must be unique</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Country NAME</label>
+                                                <input type="text"
+                                                       name="countryName"
+                                                       th:value="${user.countryName}"
+                                                       class="form-control" id="exampleInpPassword1" placeholder="Enter country NAME">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Country REGION</label>
+                                                <select type="text"
+                                                        name="regionName"
+                                                        class="form-control">
+                                                    <option th:each="region : ${region}" th:value="${region.regionName}" th:text="${region.regionName}"
+                                                            th:selected="${region.regionName==user.regionId.getRegionName()}">
+
+                                                    </option>
+                                                </select>
+                                            </div>
+
+
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                        <button  type="submit" class="btn btn-primary">Add</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
