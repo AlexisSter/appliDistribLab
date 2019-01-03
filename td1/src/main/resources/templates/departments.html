@@ -33,7 +33,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{http://localhost:8080/home}">Home</a>
-                        <span class="sr-only">(current)</span>
+                    <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -67,9 +67,10 @@
                 <table class="table table-striped table-sm table-hover" >
                     <thead>
                     <tr>
-                        <th>Country ID</th>
-                        <th>Country NAME</th>
-                        <th>Country REGION</th>
+                        <th>Department ID</th>
+                        <th>Department NAME</th>
+                        <th>Department MANAGER</th>
+                        <th>Department LOCATION</th>
                         <th>Edit</th>
                         <th>Delete</th>
 
@@ -78,15 +79,19 @@
                     <!--/*@thymesVar id="smokeTests" type=""*/-->
                     <tbody >
 
-                    <tr data-th-each="user : ${smokeTests}">
-                        <td data-th-text="${user.countryId}">test</td>
-                        <td data-th-text="${user.countryName}">...</td>
-                        <td data-th-text="${user.regionId.getRegionName()}">...</td>
+                    <tr data-th-each="user : ${department}">
+                        <td data-th-text="${user.departmentId}">test</td>
+                        <td data-th-text="${user.departmentName}">...</td>
+                        <td data-th-text="${user.managerId}">...</td>
+                        <td data-th-text="${user.employeesList}">...</td>
+<!--
                         <td><button th:attr="data-target='#edit'+${user.countryId}" data-toggle="modal" class="btn btn-outline-warning"><i class="far fa-edit"></i></button></td>
                         <td><button th:attr="data-target='#delete'+${user.countryId}" data-toggle="modal" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></td>
+-->
 
 
 
+<!--
                         <div class="modal fade" th:id="'delete'+${user.countryId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -110,7 +115,7 @@
                                                     id="countryId"
                                                     th:value="${user.countryId}"
                                                     hidden="hidden"
-                                                    />
+                                            />
                                             <button  type="submit" class="btn btn-primary">Delete</button>
                                         </form>
 
@@ -171,6 +176,7 @@
                                 </div>
                             </div>
                         </div>
+-->
                     </tr>
 
 
@@ -194,31 +200,31 @@
             </div>
             <div class="modal-body">
 
-<form th:action="@{/country/add}" th:object="${countryAdd}" action="#" method="post">
-    <div class="form-group">
-        <label>Country ID</label>
-        <input type="text"
-               name="countryId"
+                <form th:action="@{/country/add}" th:object="${countryAdd}" action="#" method="post">
+                    <div class="form-group">
+                        <label>Country ID</label>
+                        <input type="text"
+                               name="countryId"
 
-               class="form-control" aria-describedby="emailHelp" placeholder="Enter country ID">
-        <small id="emailHelp" class="form-text text-muted">The ID must be unique</small>
-    </div>
-    <div class="form-group">
-        <label>Country NAME</label>
-        <input type="text"
-               name="countryName"
-               class="form-control" id="exampleInputPassword1" placeholder="Enter country NAME">
-    </div>
-    <div class="form-group">
-        <label>Country REGION</label>
-        <select type="text"
-                name="regionName"
-                class="form-control">
-            <option th:each="region : ${region}" th:value="${region.regionName}" th:text="${region.regionName}">
+                               class="form-control" aria-describedby="emailHelp" placeholder="Enter country ID">
+                        <small id="emailHelp" class="form-text text-muted">The ID must be unique</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Country NAME</label>
+                        <input type="text"
+                               name="countryName"
+                               class="form-control" id="exampleInputPassword1" placeholder="Enter country NAME">
+                    </div>
+                    <div class="form-group">
+                        <label>Country REGION</label>
+                        <select type="text"
+                                name="regionName"
+                                class="form-control">
+                            <option th:each="region : ${region}" th:value="${region.regionName}" th:text="${region.regionName}">
 
-            </option>
-        </select>
-    </div>
+                            </option>
+                        </select>
+                    </div>
 
 
 
