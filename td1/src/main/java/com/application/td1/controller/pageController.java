@@ -1,17 +1,10 @@
 package com.application.td1.controller;
 
-import com.application.td1.model.JobsEntity;
-import com.application.td1.repository.JobRepository;
-import io.swagger.annotations.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 
@@ -37,5 +30,11 @@ public class pageController {
 
         return "index";
     }
+    @RequestMapping(value = "/graph",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String graph(Model model) {
+
+        return "graph";
+    }
+
 
 }
