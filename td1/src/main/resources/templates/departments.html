@@ -55,7 +55,7 @@
 <!-- Page Content -->
 <div class="container">
     <div class="row align-items-center my-4">
-        <div class="col-lg-4"><h1 class="text-center">Countries table</h1></div>
+        <div class="col-lg-4"><h1 class="text-center">Departments table</h1></div>
         <div class="col-lg-1"><button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalAdd">Add<i class="far fa-plus-square ml-2"></i></button></div>
 
 
@@ -69,7 +69,7 @@
                     <tr>
                         <th>Department ID</th>
                         <th>Department NAME</th>
-                        <th>Department MANAGER</th>
+                        <th>Department MANAGER ID</th>
                         <th>Department LOCATION</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -83,37 +83,47 @@
                         <td data-th-text="${user.departmentId}">test</td>
                         <td data-th-text="${user.departmentName}">...</td>
                         <td data-th-text="${user.managerId}">...</td>
-                        <td data-th-text="${user.employeesList}">...</td>
-<!--
-                        <td><button th:attr="data-target='#edit'+${user.countryId}" data-toggle="modal" class="btn btn-outline-warning"><i class="far fa-edit"></i></button></td>
-                        <td><button th:attr="data-target='#delete'+${user.countryId}" data-toggle="modal" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></td>
--->
+                        <td data-th-text="${user.locationId.getLocationId()}+', '+
+                                          ${user.locationId.getStreetAddress()}+', '+
+                                          ${user.locationId.getPostalCode()}+', '+
+                                          ${user.locationId.getCity()}+', '+
+                                          ${user.locationId.getStateProvince()}+', '+
+                                          ${user.locationId.getCountryId().getCountryName()}
+
+
+                            ">...</td>
 
 
 
-<!--
-                        <div class="modal fade" th:id="'delete'+${user.countryId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <td><button th:attr="data-target='#edit'+${user.departmentId}" data-toggle="modal" class="btn btn-outline-warning"><i class="far fa-edit"></i></button></td>
+                        <td><button th:attr="data-target='#delete'+${user.departmentId}" data-toggle="modal" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></td>
+
+
+
+
+
+                        <div class="modal fade" th:id="'delete'+${user.getDepartmentId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5  class="modal-title" id="exampleModalLabel">Delete country</h5>
+                                        <h5  class="modal-title" id="exampleModalLabel">Delete department</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
 
-                                        <p th:text="'Do you really want to delete this country ('+${user.countryId}+') ?'"></p>
+                                        <p th:text="'Do you really want to delete this department ('+${user.getDepartmentName()}+') ?'"></p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <form th:action="@{/country/delete}" th:object="${country}" action="#" method="post">
+                                        <form th:action="@{/department/delete}" th:object="${departmentDelete}" action="#" method="post">
 
                                             <input
                                                     type="text"
-                                                    name="countryId"
-                                                    id="countryId"
-                                                    th:value="${user.countryId}"
+                                                    name="departmentId"
+                                                    id="depatmentId"
+                                                    th:value="${user.getDepartmentId()}"
                                                     hidden="hidden"
                                             />
                                             <button  type="submit" class="btn btn-primary">Delete</button>
@@ -124,40 +134,47 @@
                             </div>
                         </div>
 
-                        <div class="modal fade" th:id="'edit'+${user.countryId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" th:id="'edit'+${user.getDepartmentId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5  class="modal-title" id="exampleModalL">Edit country</h5>
+                                        <h5  class="modal-title" id="exampleModalL">Edit department</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
 
-                                        <form th:action="@{/country/edit}" th:object="${countryEdit}" action="#" method="post">
+                                        <form th:action="@{/department/edit}" th:object="${departmentEdit}" action="#" method="post">
                                             <div class="form-group">
-                                                <label>Country ID</label>
+                                                <label>Department ID</label>
                                                 <input type="text"
-                                                       name="countryId"
-                                                       th:value="${user.countryId}"
+                                                       name="departmentId"
+                                                       th:value="${user.getDepartmentId()}"
                                                        class="form-control" aria-describedby="emailHelp" placeholder="Enter country ID">
                                                 <small id="emailHe" class="form-text text-muted">The ID must be unique</small>
                                             </div>
                                             <div class="form-group">
-                                                <label>Country NAME</label>
+                                                <label>Department NAME</label>
                                                 <input type="text"
-                                                       name="countryName"
-                                                       th:value="${user.countryName}"
+                                                       name="departmentName"
+                                                       th:value="${user.getDepartmentName()}"
                                                        class="form-control" id="exampleInpPassword1" placeholder="Enter country NAME">
                                             </div>
                                             <div class="form-group">
-                                                <label>Country REGION</label>
+                                                <label>Department LOCATION</label>
                                                 <select type="text"
-                                                        name="regionName"
+                                                        name="departmentLocation"
                                                         class="form-control">
-                                                    <option th:each="region : ${region}" th:value="${region.regionName}" th:text="${region.regionName}"
-                                                            th:selected="${region.regionName==user.regionId.getRegionName()}">
+                                                    <option th:each="location : ${location}"
+                                                            th:value="${location.getLocationId()}"
+                                                            th:text="${location.getLocationId()}+', '+
+                                                                          ${location.getStreetAddress()}+', '+
+                                                                          ${location.getPostalCode()}+', '+
+                                                                          ${location.getCity()}+', '+
+                                                                          ${location.getStateProvince()}+', '+
+                                                                          ${location.getCountryId().getCountryName()}"
+                                                            th:selected="${location.getLocationId()==user.locationId.getLocationId()}">
 
                                                     </option>
                                                 </select>
@@ -176,7 +193,7 @@
                                 </div>
                             </div>
                         </div>
--->
+
                     </tr>
 
 
@@ -193,34 +210,47 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5  class="modal-title" id="exampleModalLab">Add country</h5>
+                <h5  class="modal-title" id="exampleModalLab">Add department</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
 
-                <form th:action="@{/country/add}" th:object="${countryAdd}" action="#" method="post">
+                <form th:action="@{/department/add}" th:object="${departmentAdd}" action="#" method="post">
                     <div class="form-group">
-                        <label>Country ID</label>
+                        <label>Department ID</label>
                         <input type="text"
-                               name="countryId"
+                               name="departmentId"
 
-                               class="form-control" aria-describedby="emailHelp" placeholder="Enter country ID">
+                               class="form-control" aria-describedby="emailHelp" placeholder="Enter department ID">
                         <small id="emailHelp" class="form-text text-muted">The ID must be unique</small>
                     </div>
                     <div class="form-group">
-                        <label>Country NAME</label>
+                        <label>Department NAME</label>
                         <input type="text"
-                               name="countryName"
-                               class="form-control" id="exampleInputPassword1" placeholder="Enter country NAME">
+                               name="departmentName"
+                               class="form-control" id="exampleInputPassword1" placeholder="Enter department NAME">
                     </div>
                     <div class="form-group">
-                        <label>Country REGION</label>
+                        <label>Department MANAGER ID</label>
+                        <input type="text"
+                               name="departmentManagerId"
+                               class="form-control" id="exaleInputPassword1" placeholder="Enter department MANAGER ID">
+                    </div>
+                    <div class="form-group">
+                        <label>Department LOCATION</label>
                         <select type="text"
-                                name="regionName"
+                                name="departmentLocation"
                                 class="form-control">
-                            <option th:each="region : ${region}" th:value="${region.regionName}" th:text="${region.regionName}">
+                            <option th:each="location : ${location}"
+                                    th:value="${location.getLocationId()}"
+                                    th:text="${location.getLocationId()}+', '+
+                                          ${location.getStreetAddress()}+', '+
+                                          ${location.getPostalCode()}+', '+
+                                          ${location.getCity()}+', '+
+                                          ${location.getStateProvince()}+', '+
+                                          ${location.getCountryId().getCountryName()}">
 
                             </option>
                         </select>

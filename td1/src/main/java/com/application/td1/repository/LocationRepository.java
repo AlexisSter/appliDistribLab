@@ -13,6 +13,6 @@ import java.util.List;
 public interface LocationRepository extends JpaRepository<LocationsEntity, Long> {
 
 
+    LocationsEntity findByLocationId(int id);
     List<LocationsEntity> findByCountryId(CountriesEntity id);
-
 }

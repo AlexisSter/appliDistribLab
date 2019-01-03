@@ -46,9 +46,9 @@ public class DepartmentsController {
         List<LocationsEntity> c = locationRepository.findAll();
         List<EmployeesEntity> b = employeeRepository.findAll();
         model.addAttribute("department",a);
-        model.addAttribute("country", new CountriesController.FormCountry());
-        model.addAttribute("countryAdd", new CountriesController.FormCountry());
-        model.addAttribute("countryEdit", new CountriesController.FormCountry());
+        model.addAttribute("departmentDelete", new FormDepartment());
+        model.addAttribute("departmentAdd", new FormDepartment());
+        model.addAttribute("departmentEdit", new FormDepartment());
         model.addAttribute("location",c);
         model.addAttribute("employee",b);
         return "departments";
@@ -56,58 +56,42 @@ public class DepartmentsController {
     }
 
     @PostMapping(value = "/delete")
-    public String delete (@ModelAttribute("country") CountriesController.FormCountry country, Model model) {
-        CountriesEntity b = countryRepository.findByCountryId(country.getCountryId());
-
-        Optional<List<LocationsEntity>> opt = Optional.ofNullable(locationRepository.findByCountryId(b));
-        if(opt.isPresent()){
-            List<LocationsEntity> a = opt.get();
-            for(int i=0; i<a.size(); i++)
-                locationRepository.delete(a.get(i));
+    public String delete (@ModelAttribute("departmentDelete") FormDepartment department, Model model) {
+        DepartmentsEntity b = departmentRepository.findByDepartmentId(department.getDepartmentId());
 
 
 
 
 
-
-        }
-        else{
-            System.out.println("Error country not existing");
-
-        }
+        departmentRepository.delete(b);
 
 
-        CountriesEntity a = countryRepository.findByCountryId(country.getCountryId());
-        countryRepository.delete(a);
-
-        System.out.println("test");
 
         departments(model);
-        return "countries";
+        return "departments";
 
     }
 
     @PostMapping(value = "/add")
-    public String add (@ModelAttribute("countryAdd") CountriesController.FormCountry country, Model model) {
-        String id = country.getCountryId();
-        Optional<CountriesEntity> opt = Optional.ofNullable(countryRepository.findByCountryId(id));
+    public String add (@ModelAttribute("departmentAdd") FormDepartment department, Model model) {
+        int id = department.getDepartmentId();
+        Optional<DepartmentsEntity> opt = Optional.ofNullable(departmentRepository.findByDepartmentId(id));
         if(opt.isPresent()){
             System.out.println("Error country already exist");
 
         }
         else{
-            CountriesEntity a= new CountriesEntity();
-            a.setCountryId(country.getCountryId());
-            a.setCountryName(country.getCountryName());
-            String name = country.getRegionName();
-            System.out.println("debut:"+name.substring(0,name.length()-2)+":fin");
-            System.out.println(name);
-            Optional<RegionsEntity> t = Optional.ofNullable(regionRepository.findByRegionName(name));
+            DepartmentsEntity a= new DepartmentsEntity();
+            a.setDepartmentId(department.getDepartmentId());
+            a.setDepartmentName(department.getDepartmentName());
+            a.setManagerId(department.getDepartmentManagerId());
+            int name = department.getDepartmentLocation();
+            Optional<LocationsEntity> t = Optional.ofNullable(locationRepository.findByLocationId(name));
             if(t.isPresent()) {
                 //System.out.println(t.getRegionId());
                 //System.out.println(t.getRegionName());
-                RegionsEntity i = t.get();
-                a.setRegionId(i);
+                LocationsEntity i = t.get();
+                a.setLocationId(i);
             }
             else{
                 System.out.println("error");
@@ -115,38 +99,38 @@ public class DepartmentsController {
 
 
 
-            countryRepository.save(a);
+            departmentRepository.save(a);
 
 
         }
 
 
         departments(model);
-        return "countries";
+        return "departments";
     }
     @PostMapping(value = "/edit")
-    public String edit (@ModelAttribute("countryEdit") CountriesController.FormCountry country, Model model) {
-        String id = country.getCountryId();
-        Optional<CountriesEntity> opt = Optional.ofNullable(countryRepository.findByCountryId(id));
+    public String edit (@ModelAttribute("departmentEdit") FormDepartment department, Model model) {
+        int id = department.getDepartmentId();
+        Optional<DepartmentsEntity> opt = Optional.ofNullable(departmentRepository.findByDepartmentId(id));
         if(opt.isPresent()){
-            CountriesEntity b= opt.get();
+            DepartmentsEntity b= opt.get();
 
-            b.setCountryId(country.getCountryId());
-            b.setCountryName(country.getCountryName());
-            String name = country.getRegionName();
+            b.setDepartmentId(department.getDepartmentId());
+            b.setDepartmentName(department.getDepartmentName());
+            int name = department.getDepartmentLocation();
 
-            System.out.println(name);
-            Optional<RegionsEntity> t = Optional.ofNullable(regionRepository.findByRegionName(name));
+            //System.out.println(name);
+            Optional<LocationsEntity> t = Optional.ofNullable(locationRepository.findByLocationId(name));
             if(t.isPresent()) {
                 //System.out.println(t.getRegionId());
                 //System.out.println(t.getRegionName());
-                RegionsEntity i = t.get();
-                b.setRegionId(i);
+                LocationsEntity i = t.get();
+                b.setLocationId(i);
             }
             else{
                 System.out.println("error");
             }
-            countryRepository.save(b);
+            departmentRepository.save(b);
 
         }
         else{
@@ -162,7 +146,50 @@ public class DepartmentsController {
 
 
         departments(model);
-        return "countries";
+        return "departments";
+    }
+
+    public static class FormDepartment {
+
+        private  static int departmentId;
+
+        private  static String departmentName;
+
+        private static int departmentManagerId;
+
+        private static  int departmentLocation;
+
+        public static int getDepartmentId() {
+            return departmentId;
+        }
+
+        public static String getDepartmentName() {
+            return departmentName;
+        }
+
+        public static int getDepartmentManagerId() {
+            return departmentManagerId;
+        }
+
+        public static int getDepartmentLocation() {
+            return departmentLocation;
+        }
+
+        public static void setDepartmentId(int departmentId) {
+            FormDepartment.departmentId = departmentId;
+        }
+
+        public static void setDepartmentName(String departmentName) {
+            FormDepartment.departmentName = departmentName;
+        }
+
+        public static void setDepartmentManagerId(int departmentManagerId) {
+            FormDepartment.departmentManagerId = departmentManagerId;
+        }
+
+        public static void setDepartmentLocation(int departmentLocation) {
+            FormDepartment.departmentLocation = departmentLocation;
+        }
     }
 
 

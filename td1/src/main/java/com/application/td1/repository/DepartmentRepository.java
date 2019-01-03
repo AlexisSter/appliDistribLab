@@ -14,6 +14,6 @@ import java.util.List;
 public interface DepartmentRepository extends JpaRepository<DepartmentsEntity, Long> {
 
 
-    //List<LocationsEntity> findByCountryId(CountriesEntity id);
+    DepartmentsEntity findByDepartmentId(int id);
 
 }
