@@ -3,23 +3,19 @@ package com.application.td1.controller;
 import com.application.td1.ObjectMapperUtils;
 import com.application.td1.model.EmployeesEntity;
 import com.application.td1.model.EmployeesEntityDTO;
-import com.application.td1.model.JobsEntity;
 import com.application.td1.repository.EmployeeRepository;
-import com.application.td1.repository.JobRepository;
-import io.swagger.annotations.*;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-@RestController
+@Controller
 @RequestMapping(path="/employee")
 public class EmployeeController {
 
@@ -29,7 +25,6 @@ public class EmployeeController {
     private EmployeeRepository employeeRepository;
 
 
-    ModelMapper modelMapper = new ModelMapper();
 
     @GetMapping(value = "/all")
     public List<EmployeesEntity> findAll () {
@@ -46,6 +41,14 @@ public class EmployeeController {
         List<EmployeesEntity> a = employeeRepository.findByFirstName(val);
         List<EmployeesEntityDTO> employeeDTO = ObjectMapperUtils.mapAll(a, EmployeesEntityDTO.class);
         return employeeDTO;
+    }
+
+    @RequestMapping(value = "/employees",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String findA (Model model) {
+        List<EmployeesEntity> a = employeeRepository.findAllByOrderBySalary();
+        model.addAttribute("employees",a);
+        return "employees1";
+
     }
 
 

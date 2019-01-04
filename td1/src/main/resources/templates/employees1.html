@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Thumbnail Gallery - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/static/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/static/css/thumbnail-gallery.css}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">AppliDistrib STER-DELORME</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{http://localhost:8080/home}">Home</a>
+                    <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{http://localhost:8080/graph}">Graph</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{http://localhost:8080/table}">Tables</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{/logout}" method="post">
+                        <button class="nav-link btn btn-outline-secondary my-2 my-sm-0" href="#" type="submit" >Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row text-center text-lg-left">
+        <center><h1>Graph plotting the salaries of employees</h1></center>
+        <table id="graph1" style="display: none;">
+            <thead>
+            <tr>
+                <th>Salary</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr data-th-each="employee : ${employees}">
+                <td data-th-text="${employee.getSalary()}">test</td>
+            </tr>
+            </tbody>
+
+        </table>
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/static/vendor/jquery/jquery.js}"></script>
+<script th:src="@{/static/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
+<script th:src="@{/static/vendor/graph.js}"></script>
+</body>
+
+</html>

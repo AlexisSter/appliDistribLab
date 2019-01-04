@@ -1,17 +1,19 @@
 package com.application.td1.controller;
-import com.application.td1.model.*;
+import com.application.td1.model.CountriesEntity;
+import com.application.td1.model.LocationsEntity;
+import com.application.td1.model.RegionsEntity;
 import com.application.td1.repository.CountryRepository;
 import com.application.td1.repository.LocationRepository;
 import com.application.td1.repository.RegionRepository;
-import org.hibernate.sql.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,17 +61,9 @@ public class CountriesProjectController {
         if(opt.isPresent()){
             List<LocationsEntity> a = opt.get();
             for(int i=0; i<a.size(); i++)
-                locationRepository.delete(a.get(i));
-
-
-
-
-
-
-        }
+                locationRepository.delete(a.get(i));}
         else{
             System.out.println("Error country not existing");
-
         }
 
 
