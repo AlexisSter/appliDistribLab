@@ -88,7 +88,9 @@
               Employees
             </div>
             <div class="card-body">
-              <a href="#" class="btn btn-primary">View</a>
+              <form th:action="@{/employees/employees}">
+              <button href="#" class="btn btn-primary">View</button>
+              </form>
             </div>
           </div>
         </div>
@@ -98,7 +100,9 @@
               Jobs
             </div>
             <div class="card-body">
-              <a href="#" class="btn btn-primary">View</a>
+                <form th:action="@{/jobs/jobs}">
+                    <button href="#" class="btn btn-primary">View</button>
+                </form>
             </div>
           </div>
         </div>
@@ -132,36 +136,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="card mb-3">
-            <div class="card-header">
-              Role
-            </div>
-            <div class="card-body">
-              <a href="#" class="btn btn-primary">View</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="card mb-3">
-            <div class="card-header">
-              User
-            </div>
-            <div class="card-body">
-              <a href="#" class="btn btn-primary">View</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="card mb-3">
-            <div class="card-header">
-              User_role
-            </div>
-            <div class="card-body">
-              <a href="#" class="btn btn-primary">View</a>
-            </div>
-          </div>
-        </div>
+
 
 
       </div>
