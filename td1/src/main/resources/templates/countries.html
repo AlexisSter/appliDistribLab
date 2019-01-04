@@ -80,7 +80,6 @@
 
                     <tr data-th-each="user : ${smokeTests}">
                         <td data-th-text="${user.countryId}">test</td>
-                        <td data-th-text="${user.countryId}">test</td>
                         <td data-th-text="${user.countryName}">...</td>
                         <td data-th-text="${user.regionId.getRegionName()}">...</td>
                         <td><button th:attr="data-target='#edit'+${user.countryId}" data-toggle="modal" class="btn btn-outline-warning"><i class="far fa-edit"></i></button></td>
