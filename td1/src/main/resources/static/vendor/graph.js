@@ -1,6 +1,4 @@
-console.log("hello");
 var nbColonnes = document.getElementById('graph1').getElementsByTagName('tr').length;
-console.log(nbColonnes);
 
 var tabSalary = [];
 var tabNb = [];
@@ -28,10 +26,6 @@ for(var i = 0 ; i < nbColonnes - 1 ; i++){
         }
         isInTab = false;
     }
-}
-
-for(var i = 0 ; i < tabSalary.length ; i++){
-    console.log(tabSalary[i], tabNb[i]);
 }
 
 
@@ -75,7 +69,7 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 159, 64, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
@@ -83,20 +77,20 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 159, 64, 0.2)',

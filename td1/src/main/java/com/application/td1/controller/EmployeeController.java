@@ -51,6 +51,14 @@ public class EmployeeController {
 
     }
 
+    @RequestMapping(value = "/employeesDecile",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String findB (Model model) {
+        List<EmployeesEntity> a = employeeRepository.findAllByOrderBySalary();
+        model.addAttribute("employees",a);
+        return "employees2";
+
+    }
+
 
 
 
