@@ -1,4 +1,4 @@
-package com.application.td1;
+package com.application.td1.Config;
 
 
 import org.springframework.context.annotation.Configuration;
