@@ -7,6 +7,7 @@ import com.application.td1.repository.LocationRepository;
 import com.application.td1.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +30,7 @@ public class CountriesProjectController {
     private RegionRepository regionRepository;
 
 
-    //@PreAuthorize("hasAnyRole('ADMIN')")
+
     //@RequestMapping(value = "/charge",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     //public String update(Model model) {
     //    model.addAttribute("form", new FormCountry());
@@ -39,7 +40,7 @@ public class CountriesProjectController {
 
 
 
-
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
     @RequestMapping(value = "/countries",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String findA (Model model) {
         List<CountriesEntity> a = countryRepository.findAll();
@@ -52,7 +53,7 @@ public class CountriesProjectController {
         return "countries";
 
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(value = "/delete")
     public String delete (@ModelAttribute("country") CountriesController.FormCountry country, Model model) {
         CountriesEntity b = countryRepository.findByCountryId(country.getCountryId());
@@ -76,7 +77,7 @@ public class CountriesProjectController {
         return "countries";
 
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(value = "/add")
     public String add (@ModelAttribute("countryAdd") CountriesController.FormCountry country, Model model) {
         String id = country.getCountryId();
@@ -114,6 +115,7 @@ public class CountriesProjectController {
         findA(model);
         return "countries";
     }
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(value = "/edit")
     public String edit (@ModelAttribute("countryEdit") CountriesController.FormCountry country, Model model) {
         String id = country.getCountryId();

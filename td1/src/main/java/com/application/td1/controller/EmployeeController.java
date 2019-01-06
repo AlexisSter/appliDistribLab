@@ -43,21 +43,6 @@ public class EmployeeController {
         return employeeDTO;
     }
 
-    @RequestMapping(value = "/employees",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public String findA (Model model) {
-        List<EmployeesEntity> a = employeeRepository.findAllByOrderBySalary();
-        model.addAttribute("employees",a);
-        return "employees1";
-
-    }
-
-    @RequestMapping(value = "/employeesDecile",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public String findB (Model model) {
-        List<EmployeesEntity> a = employeeRepository.findAllByOrderBySalary();
-        model.addAttribute("employees",a);
-        return "employees2";
-
-    }
 
 
 

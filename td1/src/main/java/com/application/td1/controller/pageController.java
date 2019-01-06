@@ -1,6 +1,7 @@
 package com.application.td1.controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,22 +15,25 @@ public class pageController {
 
 
     //@PreAuthorize("hasAnyRole('USER')")
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN','USER')")
     @RequestMapping(value = "/home",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String home(Model model) {
 
         return "home";
     }
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN','USER')")
     @RequestMapping(value = "/",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String home1(Model model) {
 
         return "home";
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
     @RequestMapping(value = "/table",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String table(Model model) {
 
         return "index";
     }
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
     @RequestMapping(value = "/graph",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String graph(Model model) {
 

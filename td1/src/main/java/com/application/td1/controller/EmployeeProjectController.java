@@ -37,7 +37,7 @@ public class EmployeeProjectController {
 
 
 
-
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
     @RequestMapping(value = "/employees",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String employees (Model model) {
         List<EmployeesEntity> a = employeeRepository.findAll();
@@ -52,7 +52,7 @@ public class EmployeeProjectController {
         return "employees";
 
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
     @PostMapping(value = "/delete")
     public String delete (@ModelAttribute("employeeDelete") FormEmployee employee, Model model) {
         EmployeesEntity b = employeeRepository.findByEmployeeId(employee.getEmployeeId());
@@ -69,7 +69,7 @@ public class EmployeeProjectController {
         return "employees";
 
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
     @PostMapping(value = "/add")
     public String add (@ModelAttribute("employeeAdd") FormEmployee employee, Model model) {
         int id = employee.getEmployeeId();
@@ -123,6 +123,7 @@ public class EmployeeProjectController {
         employees(model);
         return "employees";
     }
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
     @PostMapping(value = "/edit")
     public String edit (@ModelAttribute("employeeEdit") FormEmployee employee, Model model) {
         int id = employee.getEmployeeId();
@@ -180,6 +181,22 @@ public class EmployeeProjectController {
 
         employees(model);
         return "employees";
+    }
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
+    @RequestMapping(value = "/employeesGraph",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String findA (Model model) {
+        List<EmployeesEntity> a = employeeRepository.findAllByOrderBySalary();
+        model.addAttribute("employees",a);
+        return "employees1";
+
+    }
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
+    @RequestMapping(value = "/employeesDecile",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String findB (Model model) {
+        List<EmployeesEntity> a = employeeRepository.findAllByOrderBySalary();
+        model.addAttribute("employees",a);
+        return "employees2";
+
     }
 
     public static class FormEmployee {

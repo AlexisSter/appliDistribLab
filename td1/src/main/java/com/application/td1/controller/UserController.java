@@ -28,18 +28,7 @@ public class UserController {
     @Autowired
     private UserRepository countryRepository;
 
-    @GetMapping(value = "/all")
-    public String findAll () {
-
-        return "HELLO";
-    }
-
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    @GetMapping(value = "/secured/all")
-    public String findOne () {
-        return "HELLO SECURED";
-    }
-
+    
     @Autowired
     private CustomUserServiceDetail userService;
 

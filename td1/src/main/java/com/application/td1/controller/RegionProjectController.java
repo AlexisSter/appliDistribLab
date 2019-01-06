@@ -35,7 +35,7 @@ public class RegionProjectController {
 
 
 
-
+    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
     @RequestMapping(value = "/regions",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String region (Model model) {
         List<RegionsEntity> a = regionRepository.findAll();
@@ -48,7 +48,7 @@ public class RegionProjectController {
         return "regions";
 
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(value = "/delete")
     public String delete (@ModelAttribute("regionDelete") FormRegion job, Model model) {
         RegionsEntity b = regionRepository.findByRegionId(job.getRegionId());
@@ -64,7 +64,7 @@ public class RegionProjectController {
         return "regions";
 
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(value = "/add")
     public String add (@ModelAttribute("regionAdd") FormRegion region, Model model) {
         int id = region.getRegionId();
@@ -88,6 +88,7 @@ public class RegionProjectController {
         region(model);
         return "regions";
     }
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(value = "/edit")
     public String edit (@ModelAttribute("regionEdit") FormRegion region, Model model) {
         int id = region.getRegionId();
