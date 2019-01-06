@@ -4,6 +4,7 @@ import com.application.td1.model.CustomUserDetail;
 import com.application.td1.model.Role;
 import com.application.td1.model.Users;
 
+import com.application.td1.repository.RoleRepository;
 import com.application.td1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,8 @@ public class CustomUserServiceDetail implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -36,23 +39,15 @@ public class CustomUserServiceDetail implements UserDetailsService {
         return new CustomUserDetail(user);
     }
 
-    public void createAdmin(Users user) {
+    public void create(Users user,String roleName) {
         BCryptPasswordEncoder encoder = new  BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
-        Role userRole = new Role("ADMIN");
+        Role userRole = roleRepository.findByRole(roleName);
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);
         user.setRoles(roles);
         userRepository.save(user);
     }
 
-    public void createUser(Users user) {
-        BCryptPasswordEncoder encoder = new  BCryptPasswordEncoder();
-        user.setPassword(encoder.encode(user.getPassword()));
-        Role userRole = new Role("USER");
-        Set<Role> roles = new HashSet<>();
-        roles.add(userRole);
-        user.setRoles(roles);
-        userRepository.save(user);
-    }
+
 }
