@@ -1,22 +1,19 @@
 package com.application.td1.controller;
-import com.application.td1.model.CountriesEntity;
+import com.application.td1.model.DepartmentsEntity;
 import com.application.td1.model.EmployeesEntity;
 import com.application.td1.model.JobsEntity;
-import com.application.td1.model.Users;
-import com.application.td1.repository.CountryRepository;
-import com.application.td1.repository.RoleRepository;
-import com.application.td1.repository.UserRepository;
+import com.application.td1.repository.DepartmentRepository;
+import com.application.td1.repository.EmployeeRepository;
+import com.application.td1.repository.JobRepository;
 import com.application.td1.service.CustomUserServiceDetail;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
-import javax.persistence.Column;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -25,31 +22,59 @@ import java.util.Optional;
 @Controller
 
 public class UserController {
-    @Autowired
-    private UserRepository countryRepository;
 
-    
+
+
     @Autowired
     private CustomUserServiceDetail userService;
+    @Autowired
+    private JobRepository jobRepository;
+    @Autowired
+    private DepartmentRepository departmentRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @GetMapping("/register")
     public String registerForm(Model model) {
-
+        List<JobsEntity> job = jobRepository.findAll();
+        List<DepartmentsEntity> department = departmentRepository.findAll();
         model.addAttribute("user", new FormUser());
+        model.addAttribute("job", job);
+        model.addAttribute("department", department);
         return "register";
     }
 
 
     @PostMapping("/register")
     public String registerUser(@Valid FormUser user, BindingResult bindingResult, Model model) {
-        Users userEntity = new Users();
+
+        DepartmentsEntity u = departmentRepository.findByDepartmentId(user.getDepartment());
+        EmployeesEntity userEntity = new EmployeesEntity();
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLastName(user.getLastName());
         userEntity.setPassword(user.getPassword());
         userEntity.setEmail(user.getEmail());
-        userService.create(userEntity,user.getRole());
+        userEntity.setDepartmentId(u);
+        userEntity.setPhoneNumber(user.getPhoneNumber());
 
-        return "app-login";
+
+
+        Optional<EmployeesEntity> o = employeeRepository.findByEmail(user.getEmail());
+        if(o.isPresent()){
+            System.out.println("error email already exist");
+            model.addAttribute("error","yes");
+            registerForm(model);
+            return "register";
+        }
+        else{
+            userService.create(userEntity,user.getJob());
+            model.addAttribute("error","no");
+            return "app-login";
+
+        }
+
+
+
 
     }
 
@@ -63,6 +88,7 @@ public class UserController {
     public ModelAndView logout() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("app-login");
+
         return modelAndView;
     }
 
@@ -75,7 +101,9 @@ public class UserController {
 
         private String password;
 
-        private String role;
+        private String job;
+        private int department;
+        private String phoneNumber;
 
         public String getFirstName() {
             return firstName;
@@ -93,9 +121,7 @@ public class UserController {
             return password;
         }
 
-        public String getRole() {
-            return role;
-        }
+
 
         public void setFirstName(String firstName) {
             this.firstName = firstName;
@@ -113,8 +139,28 @@ public class UserController {
             this.password = password;
         }
 
-        public void setRole(String role) {
-            this.role = role;
+        public String getJob() {
+            return job;
+        }
+
+        public int getDepartment() {
+            return department;
+        }
+
+        public void setJob(String job) {
+            this.job = job;
+        }
+
+        public void setDepartment(int department) {
+            this.department = department;
+        }
+
+        public String getPhoneNumber() {
+            return phoneNumber;
+        }
+
+        public void setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
         }
     }
 

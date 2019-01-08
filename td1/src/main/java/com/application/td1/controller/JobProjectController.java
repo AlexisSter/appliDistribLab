@@ -35,7 +35,7 @@ public class JobProjectController {
 
 
 
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR')")
     @RequestMapping(value = "/jobs",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String job (Model model) {
         List<JobsEntity> a = jobRepository.findAll();
@@ -48,7 +48,7 @@ public class JobProjectController {
         return "jobs";
 
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR')")
     @PostMapping(value = "/delete")
     public String delete (@ModelAttribute("jobDelete") FormJob job, Model model) {
         JobsEntity b = jobRepository.findByJobId(job.getJobId());
@@ -64,7 +64,7 @@ public class JobProjectController {
         return "jobs";
 
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR')")
     @PostMapping(value = "/add")
     public String add (@ModelAttribute("jobAdd") FormJob job, Model model) {
         String id = job.getJobId();
@@ -89,7 +89,7 @@ public class JobProjectController {
         job(model);
         return "jobs";
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR')")
     @PostMapping(value = "/edit")
     public String edit (@ModelAttribute("jobEdit") FormJob job, Model model) {
         String id = job.getJobId();

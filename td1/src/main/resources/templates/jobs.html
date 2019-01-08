@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Thumbnail Gallery - Start Bootstrap Template</title>
+    <title>AppliDistrib - Jobs</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- Bootstrap core CSS -->
@@ -138,13 +138,14 @@
 
                                         <form th:action="@{/jobs/edit}" th:object="${jobEdit}" action="#" method="post">
                                             <div class="form-group">
-                                                <label>Job ID</label>
+
                                                 <input type="text"
                                                        name="jobId"
                                                        th:value="${user.getJobId()}"
                                                        required
+
                                                        class="form-control" aria-describedby="emailHelp" placeholder="Enter job ID">
-                                                <small id="emailHelp" class="form-text text-muted">The ID must be unique</small>
+
                                             </div>
                                             <div class="form-group">
                                                 <label>Job TITLE</label>

@@ -40,7 +40,7 @@ public class CountriesProjectController {
 
 
 
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR','SA_MAN','SA_REP')")
     @RequestMapping(value = "/countries",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String findA (Model model) {
         List<CountriesEntity> a = countryRepository.findAll();
@@ -53,7 +53,7 @@ public class CountriesProjectController {
         return "countries";
 
     }
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES')")
     @PostMapping(value = "/delete")
     public String delete (@ModelAttribute("country") CountriesController.FormCountry country, Model model) {
         CountriesEntity b = countryRepository.findByCountryId(country.getCountryId());
@@ -77,7 +77,7 @@ public class CountriesProjectController {
         return "countries";
 
     }
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES')")
     @PostMapping(value = "/add")
     public String add (@ModelAttribute("countryAdd") CountriesController.FormCountry country, Model model) {
         String id = country.getCountryId();
@@ -115,7 +115,7 @@ public class CountriesProjectController {
         findA(model);
         return "countries";
     }
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES')")
     @PostMapping(value = "/edit")
     public String edit (@ModelAttribute("countryEdit") CountriesController.FormCountry country, Model model) {
         String id = country.getCountryId();

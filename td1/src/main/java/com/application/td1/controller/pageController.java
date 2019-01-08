@@ -15,25 +15,25 @@ public class pageController {
 
 
     //@PreAuthorize("hasAnyRole('USER')")
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN','USER')")
+    @PreAuthorize("permitAll()")
     @RequestMapping(value = "/home",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String home(Model model) {
 
         return "home";
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN','USER')")
+    @PreAuthorize("permitAll()")
     @RequestMapping(value = "/",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String home1(Model model) {
 
         return "home";
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR','SA_MAN','SA_REP')")
     @RequestMapping(value = "/table",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String table(Model model) {
 
         return "index";
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR','SA_MAN','SA_REP')")
     @RequestMapping(value = "/graph",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String graph(Model model) {
 

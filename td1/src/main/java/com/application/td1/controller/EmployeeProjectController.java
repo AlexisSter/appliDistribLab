@@ -14,6 +14,7 @@ import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/employees")
@@ -37,7 +38,7 @@ public class EmployeeProjectController {
 
 
 
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR')")
     @RequestMapping(value = "/employees",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String employees (Model model) {
         List<EmployeesEntity> a = employeeRepository.findAll();
@@ -52,7 +53,7 @@ public class EmployeeProjectController {
         return "employees";
 
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR')")
     @PostMapping(value = "/delete")
     public String delete (@ModelAttribute("employeeDelete") FormEmployee employee, Model model) {
         EmployeesEntity b = employeeRepository.findByEmployeeId(employee.getEmployeeId());
@@ -69,7 +70,7 @@ public class EmployeeProjectController {
         return "employees";
 
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR')")
     @PostMapping(value = "/add")
     public String add (@ModelAttribute("employeeAdd") FormEmployee employee, Model model) {
         int id = employee.getEmployeeId();
@@ -123,7 +124,7 @@ public class EmployeeProjectController {
         employees(model);
         return "employees";
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR')")
     @PostMapping(value = "/edit")
     public String edit (@ModelAttribute("employeeEdit") FormEmployee employee, Model model) {
         int id = employee.getEmployeeId();
@@ -182,7 +183,7 @@ public class EmployeeProjectController {
         employees(model);
         return "employees";
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR','SA_MAN','SA_REP')")
     @RequestMapping(value = "/employeesGraph",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String findA (Model model) {
         List<EmployeesEntity> a = employeeRepository.findAllByOrderBySalary();
@@ -190,7 +191,7 @@ public class EmployeeProjectController {
         return "employees1";
 
     }
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN','SALE_MAN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR','SA_MAN','SA_REP')")
     @RequestMapping(value = "/employeesDecile",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String findB (Model model) {
         List<EmployeesEntity> a = employeeRepository.findAllByOrderBySalary();

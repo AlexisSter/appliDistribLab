@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees", schema = "humanresources", catalog = "")
@@ -15,6 +16,9 @@ public class EmployeesEntity {
     private String firstName;
     private String lastName;
     private String email;
+    @Basic
+    @Column(name = "PASSWORD")
+    private String password;
     private String phoneNumber;
     private Date hireDate;
     private BigDecimal salary;
@@ -31,11 +35,12 @@ public class EmployeesEntity {
         this.commissionPct=getCommissionPct();
         this.departmentId=getDepartmentId();
         this.email=getEmail();
+        this.password=employeesEntity.getPassword();
         this.employeeId=getEmployeeId();
         this.firstName=getFirstName();
         this.hireDate=getHireDate();
         this.jobhistoryList=getJobhistoryList();
-        this.jobId=getJobId();
+        this.jobId=employeesEntity.getJobId();
         this.lastName=getLastName();
         this.managerId=getManagerId();
         this.phoneNumber=getPhoneNumber();
@@ -80,6 +85,17 @@ public class EmployeesEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Basic

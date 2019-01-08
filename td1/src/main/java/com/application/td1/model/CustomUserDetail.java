@@ -9,31 +9,33 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CustomUserDetail extends Users implements UserDetails {
+public class CustomUserDetail extends EmployeesEntity implements UserDetails {
 
-    public CustomUserDetail(final Users users) {
+    public CustomUserDetail(final EmployeesEntity users) {
+
         super(users);
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-
-        return getRoles()
-                .stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_"+ role.getRole()))
-                .collect(Collectors.toList());
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_"+ super.getJobId().getJobId()));
+        System.out.println(authorities);
+        return authorities;
 
 
     }
 
     @Override
     public String getPassword() {
+        System.out.println("pass : "+super.getPassword());
         return super.getPassword();
     }
 
     @Override
     public String getUsername() {
+        System.out.println("lastname : "+super.getLastName());
         return super.getEmail();
     }
 

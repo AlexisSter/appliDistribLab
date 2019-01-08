@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Thumbnail Gallery - Start Bootstrap Template</title>
+    <title>AppliDistrib - Departments</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- Bootstrap core CSS -->
@@ -147,16 +147,19 @@
 
                                         <form th:action="@{/department/edit}" th:object="${departmentEdit}" action="#" method="post">
                                             <div class="form-group">
-                                                <label>Department ID</label>
+
                                                 <input type="text"
+
+                                                       required
                                                        name="departmentId"
                                                        th:value="${user.getDepartmentId()}"
                                                        class="form-control" aria-describedby="emailHelp" placeholder="Enter country ID">
-                                                <small id="emailHe" class="form-text text-muted">The ID must be unique</small>
+
                                             </div>
                                             <div class="form-group">
                                                 <label>Department NAME</label>
                                                 <input type="text"
+                                                       required
                                                        name="departmentName"
                                                        th:value="${user.getDepartmentName()}"
                                                        class="form-control" id="exampleInpPassword1" placeholder="Enter country NAME">
@@ -164,6 +167,7 @@
                                             <div class="form-group">
                                                 <label>Department LOCATION</label>
                                                 <select type="text"
+                                                        required
                                                         name="departmentLocation"
                                                         class="form-control">
                                                     <option th:each="location : ${location}"
@@ -222,25 +226,28 @@
                         <label>Department ID</label>
                         <input type="text"
                                name="departmentId"
-
+                                required
                                class="form-control" aria-describedby="emailHelp" placeholder="Enter department ID">
                         <small id="emailHelp" class="form-text text-muted">The ID must be unique</small>
                     </div>
                     <div class="form-group">
                         <label>Department NAME</label>
                         <input type="text"
+                               required
                                name="departmentName"
                                class="form-control" id="exampleInputPassword1" placeholder="Enter department NAME">
                     </div>
                     <div class="form-group">
                         <label>Department MANAGER ID</label>
                         <input type="text"
+                               required
                                name="departmentManagerId"
                                class="form-control" id="exaleInputPassword1" placeholder="Enter department MANAGER ID">
                     </div>
                     <div class="form-group">
                         <label>Department LOCATION</label>
                         <select type="text"
+                                required
                                 name="departmentLocation"
                                 class="form-control">
                             <option th:each="location : ${location}"

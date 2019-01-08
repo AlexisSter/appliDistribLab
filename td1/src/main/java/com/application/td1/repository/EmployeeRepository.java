@@ -6,6 +6,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RepositoryRestResource(collectionResourceRel = "employee", path = "/employee")
@@ -16,5 +17,7 @@ public interface EmployeeRepository extends JpaRepository<EmployeesEntity, Long>
     List<EmployeesEntity> findAllByOrderBySalary();
     EmployeesEntity findByEmployeeId(Integer val);
 
+
+    Optional<EmployeesEntity> findByEmail(String name);
 
 }

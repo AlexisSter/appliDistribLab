@@ -1,4 +1,4 @@
-package com.application.td1.Config;
+package com.application.td1;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;

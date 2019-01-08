@@ -39,7 +39,7 @@ public class DepartmentsController {
 
 
 
-    @PreAuthorize("hasAnyRole('ADMIN','ACC_FIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES','AC_ACCOUNT','AC_MGR','FI_ACCOUNT','FI_MGR')")
     @RequestMapping(value = "/departments",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String departments (Model model) {
         List<DepartmentsEntity> a = departmentRepository.findAll();
@@ -54,7 +54,7 @@ public class DepartmentsController {
         return "departments";
 
     }
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES')")
     @PostMapping(value = "/delete")
     public String delete (@ModelAttribute("departmentDelete") FormDepartment department, Model model) {
         DepartmentsEntity b = departmentRepository.findByDepartmentId(department.getDepartmentId());
@@ -71,7 +71,7 @@ public class DepartmentsController {
         return "departments";
 
     }
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES')")
     @PostMapping(value = "/add")
     public String add (@ModelAttribute("departmentAdd") FormDepartment department, Model model) {
         int id = department.getDepartmentId();
@@ -108,7 +108,7 @@ public class DepartmentsController {
         departments(model);
         return "departments";
     }
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('AD_PRES')")
     @PostMapping(value = "/edit")
     public String edit (@ModelAttribute("departmentEdit") FormDepartment department, Model model) {
         int id = department.getDepartmentId();
