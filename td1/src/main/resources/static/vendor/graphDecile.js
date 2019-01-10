@@ -1,44 +1,50 @@
 //get nb salaries in data
 var nbColonnes = document.getElementById('graph1').getElementsByTagName('tr').length;
-
+var min = document.getElementById('graph1').getElementsByTagName('td')[1].innerHTML;
+var max = document.getElementById('graph1').getElementsByTagName('td')[nbColonnes-2].innerHTML;
+var decile = (max-min)/10;
+var tabInterval = [0,0,0,0,0,0,0,0,0]
+for(var i = 0; i<10 ; i++){
+    var interval = decile*(i+1) + parseInt(min);
+    tabInterval[i] = interval;
+}
 var tabSalary = [0,0,0,0,0,0,0,0,0,0];
-var tabDecile = [2500,5000,7500,10000,12500,15000,17500,20000,22500,25000]
-//Split employees in 10 intervals 0-2500 to 22501-25000
+//Split employees in 10 intervals 2100/4290 to 21810/24000
 for(var i = 0 ; i < nbColonnes - 1 ; i++){
     var valueCell = document.getElementById('graph1').getElementsByTagName('td')[i].innerHTML;
-    if(valueCell <= tabDecile[0]){
+    if(valueCell <= tabInterval[0]){
         tabSalary[0] += 1;
     }
     else{
-        if(valueCell <= tabDecile[1]){
+        if(valueCell <= tabInterval[1]){
             tabSalary[1] += 1;
         }
         else{
-            if(valueCell <= tabDecile[2]){
+            if(valueCell <= tabInterval[2]){
                 tabSalary[2] += 1;
             }
             else{
-                if(valueCell <= tabDecile[3]){
+                if(valueCell <= tabInterval[3]){
                     tabSalary[3] += 1;
                 }
                 else{
-                    if(valueCell <= tabDecile[4]){
+                    if(valueCell <= tabInterval[4]){
                         tabSalary[4] += 1;
                     }
                     else{
-                        if(valueCell <= tabDecile[5]){
+                        if(valueCell <= tabInterval[5]){
                             tabSalary[5] += 1;
                         }
                         else{
-                            if(valueCell <= tabDecile[6]){
+                            if(valueCell <= tabInterval[6]){
                                 tabSalary[6] += 1;
                             }
                             else{
-                                if(valueCell <= tabDecile[7]){
+                                if(valueCell <= tabInterval[7]){
                                     tabSalary[7] += 1;
                                 }
                                 else{
-                                    if(valueCell <= tabDecile[8]){
+                                    if(valueCell <= tabInterval[8]){
                                         tabSalary[8] += 1;
                                     }
                                     else{
@@ -64,7 +70,7 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["0-2500","2501-5000","5001-7500","7501-10000","10001-12500","12501-15000","15001-17500","17501-20000","20001-22500","22501-25000"],
+        labels: ["[" + parseInt(min) + "-" + tabInterval[0] +"]","]" + tabInterval[0]+ "-" + tabInterval[1]+"]","]" + tabInterval[1] + "-" + tabInterval[2]+"]","]" + tabInterval[2] + "-" + tabInterval[3]+"]","]" + tabInterval[3] + "-" + tabInterval[4]+"]","]" + tabInterval[4] + "-" + tabInterval[5]+"]","]" + tabInterval[5] + "-" + tabInterval[6]+"]","]" + tabInterval[6] + "-" + tabInterval[7]+"]","]" + tabInterval[7] + "-" +tabInterval[8]+"]","]" + tabInterval[8] + "-" + tabInterval[9]+"]"],
         datasets: [{
             label: 'Division of salaries in intervals, in percentage',
             data: tabSalary,
