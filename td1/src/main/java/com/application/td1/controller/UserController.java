@@ -84,6 +84,12 @@ public class UserController {
         modelAndView.setViewName("app-login");
         return modelAndView;
     }
+    @GetMapping("/forbidden")
+    public ModelAndView forbidden() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("forbidden");
+        return modelAndView;
+    }
     @GetMapping("/logout")
     public ModelAndView logout() {
         ModelAndView modelAndView = new ModelAndView();

@@ -27,7 +27,7 @@ public class SwaggerConfig {
     // Describe your apis
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Job controller REST APIs")
+                .title("TP And Project REST APIs")
                 .description("API.")
                 .version("1.0-SNAPSHOT")
                 .build();
@@ -36,7 +36,7 @@ public class SwaggerConfig {
     private Predicate<String> paths() {
 // Match all paths except /error
         return Predicates.and(
-                PathSelectors.regex("/job.*"),
+                PathSelectors.regex("/.*"),
                 Predicates.not(PathSelectors.regex("/error.*")));
     }
 }

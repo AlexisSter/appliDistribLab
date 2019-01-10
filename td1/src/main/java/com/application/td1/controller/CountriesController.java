@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(value="/country")
+@RequestMapping(value="/countries")
 public class CountriesController {
         @Autowired
         private CountryRepository countryRepository;

@@ -19,7 +19,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 public class ThymeleafWebMvcConfig implements WebMvcConfigurer {
 
 
-    public ViewResolver viewResolver(){
+    /*public ViewResolver viewResolver(){
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine((ISpringTemplateEngine) templateEngine());
         return viewResolver;
@@ -43,7 +43,7 @@ public class ThymeleafWebMvcConfig implements WebMvcConfigurer {
         templateResolver.setPrefix("classpath:/templates/");
 
         return templateResolver;
-    }
+    }*/
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @Api(value="/customer",description="Job Controller",produces ="application/json")
 @RequestMapping(path="/job")
 public class JobController {

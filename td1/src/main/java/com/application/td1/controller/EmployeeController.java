@@ -9,10 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(path="/employee")
 public class EmployeeController {
 
@@ -33,7 +34,7 @@ public class EmployeeController {
       //  return employeeRepository.findByJobTitle(employeeName);
     //}
 
-    @GetMapping(value = "/salary/{val}")
+    @GetMapping(value = "/name/{val}")
     public List<EmployeesEntityDTO> findSalary (@PathVariable final String val) {
         List<EmployeesEntity> a = employeeRepository.findByFirstName(val);
         List<EmployeesEntityDTO> employeeDTO = ObjectMapperUtils.mapAll(a, EmployeesEntityDTO.class);
