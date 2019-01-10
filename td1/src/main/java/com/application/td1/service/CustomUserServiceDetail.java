@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.*;
 
@@ -57,6 +58,7 @@ public class CustomUserServiceDetail implements UserDetailsService {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setEmployeeId(count+1);
         user.setHireDate(new Date(System.currentTimeMillis()));
+        user.setSalary(new BigDecimal(0));
         JobsEntity a = jobRepository.findByJobId(roleName);
         user.setJobId(a);
 
